@@ -5,9 +5,9 @@ public class Game
 {
     public static string planet = "Earth";
     public static PlanetInfo[] planets = { 
-                                         new PlanetInfo("Earth", "Earth", new AtmosphereInfo(21, 78, 1, 0, 0), 15, 4, 4, 5, 4, 5, true, false, true, "Earth is the starting point of Humanity, and your home. Earth is about 4.5 billion years old. It's conditions are perfect for life."),
+                                         new PlanetInfo("Earth", "Earth", new AtmosphereInfo(21, 78, 1, 0, 0), 15, 4, 4, 5, 5, 5, true, false, true, "Earth is the starting point of Humanity, and your home. Earth is about 4.5 billion years old. It's conditions are perfect for life."),
                                          new PlanetInfo("Giatingo", "BlueRingedGasGiant", new AtmosphereInfo(1, 0, 0, 80, 19), -100, 0, 0, 0, 0, 0, false, false, false, "Giatingo is a gas giant. It is completely uninhabitable."),
-                                         new PlanetInfo("SDPlanet", "EarthLike1", new AtmosphereInfo(20, 78, 2, 0, 0), 21, 4, 3, 4, 3, 5, true, true, true, "SDPlanet is a earth like planet. The planet is habitable.")};
+                                         new PlanetInfo("SDPlanet", "EarthLike1", new AtmosphereInfo(20, 78, 2, 0, 0), 21, 5, 3, 4, 3, 5, true, true, true, "SDPlanet is an earth like planet. The planet is habitable.")};
 
     public static string GetPlanetTextureName(string name)
     {
@@ -99,6 +99,19 @@ public class Game
 
         return 0;
     }
+
+    public static string GetPlanetDescription(string name)
+    {
+        for (int i = 0; i < planets.Length; i++)
+        {
+            if (planets[i].name.ToLower().Equals(name.ToLower()))
+            {
+                return planets[i].description;
+            }
+        }
+
+        return "[ERROR: This description is blank]";
+    }
 }
 
 public class PlanetInfo
@@ -120,6 +133,7 @@ public class PlanetInfo
         this.wood = wood;
         this.stone = stone;
         this.fossilfuel = fossilfuel;
+        this.food = food;
         this.life = life;
         this.aliens = aliens;
         this.habitable = habitable;

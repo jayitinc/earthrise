@@ -25,6 +25,23 @@ public class PlanetManager : MonoBehaviour
         DrawBar(1, "Blue", Game.GetPlanetWaterRating(Game.planet));
         DrawLabel(2, "Wood");
         DrawBar(3, "Brown", Game.GetPlanetWoodRating(Game.planet));
+        DrawLabel(4, "Stone");
+        DrawBar(5, "Grey", Game.GetPlanetStoneRating(Game.planet));
+        DrawLabel(6, "Fossil Fuel");
+        DrawBar(7, "Purple", Game.GetPlanetFossilFuelRating(Game.planet));
+        DrawLabel(8, "Food");
+        DrawBar(9, "Red", Game.GetPlanetFoodRating(Game.planet));
+        GUIStyle descriptionStyle = new GUIStyle();
+        descriptionStyle.fontSize = 12;
+        descriptionStyle.normal.textColor = Color.white;
+        descriptionStyle.font = skin.label.font;
+        descriptionStyle.alignment = TextAnchor.MiddleCenter;
+        descriptionStyle.wordWrap = true;
+        GUI.Label(PositionGUIElement(11), Game.GetPlanetDescription(Game.planet), descriptionStyle);
+        if(DrawButton(12, "Galatic Map"))
+        {
+            Application.LoadLevel("GalacticMap");
+        }
     }
 
     private void DrawLabel(int index, string text)
@@ -35,6 +52,11 @@ public class PlanetManager : MonoBehaviour
     private void DrawBar(int index, string color, int value)
     {
         GUI.DrawTexture(PositionGUIElement(index), Resources.Load<Texture2D>("Bars/" + color + value));
+    }
+
+    private bool DrawButton(int index, string text)
+    {
+        return GUI.Button(PositionGUIElement(index), text);
     }
 
     private Rect PositionGUIElement(int index)

@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\ButtonChangeMenu.cs" />
      <Compile Include="Assets\Scripts\ButtonChangeScene.cs" />
+     <Compile Include="Assets\Scripts\GalaxyPlanet.cs" />
      <Compile Include="Assets\Scripts\Game.cs" />
      <Compile Include="Assets\Scripts\MenuManager.cs" />
      <Compile Include="Assets\Scripts\Planet.cs" />
