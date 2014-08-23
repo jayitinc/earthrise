@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Game
 {
-    public static string planet = "SDplanet";
+    public static string planet = "Earth";
     public static PlanetInfo[] planets = { 
                                          new PlanetInfo("Earth", "Earth", new AtmosphereInfo(21, 78, 1, 0, 0), 15, 4, 4, 5, 4, 5, true, false, true, "Earth is the starting point of Humanity, and your home. Earth is about 4.5 billion years old. It's conditions are perfect for life."),
                                          new PlanetInfo("Giatingo", "BlueRingedGasGiant", new AtmosphereInfo(1, 0, 0, 80, 19), -100, 0, 0, 0, 0, 0, false, false, false, "Giatingo is a gas giant. It is completely uninhabitable."),
@@ -20,6 +20,84 @@ public class Game
         }
 
         return null;
+    }
+
+    public static string GetPlanetName(string name)
+    {
+        for (int i = 0; i < planets.Length; i++)
+        {
+            if (planets[i].name.ToLower().Equals(name.ToLower()))
+            {
+                return planets[i].name;
+            }
+        }
+
+        return null;
+    }
+
+    public static int GetPlanetWaterRating(string name)
+    {
+        for (int i = 0; i < planets.Length; i++)
+        {
+            if (planets[i].name.ToLower().Equals(name.ToLower()))
+            {
+                return planets[i].water;
+            }
+        }
+
+        return 0;
+    }
+
+    public static int GetPlanetWoodRating(string name)
+    {
+        for (int i = 0; i < planets.Length; i++)
+        {
+            if (planets[i].name.ToLower().Equals(name.ToLower()))
+            {
+                return planets[i].wood;
+            }
+        }
+
+        return 0;
+    }
+
+    public static int GetPlanetStoneRating(string name)
+    {
+        for (int i = 0; i < planets.Length; i++)
+        {
+            if (planets[i].name.ToLower().Equals(name.ToLower()))
+            {
+                return planets[i].stone;
+            }
+        }
+
+        return 0;
+    }
+
+    public static int GetPlanetFossilFuelRating(string name)
+    {
+        for (int i = 0; i < planets.Length; i++)
+        {
+            if (planets[i].name.ToLower().Equals(name.ToLower()))
+            {
+                return planets[i].fossilfuel;
+            }
+        }
+
+        return 0;
+    }
+
+    public static int GetPlanetFoodRating(string name)
+    {
+        for (int i = 0; i < planets.Length; i++)
+        {
+            if (planets[i].name.ToLower().Equals(name.ToLower()))
+            {
+                return planets[i].food;
+            }
+        }
+
+        return 0;
     }
 }
 
