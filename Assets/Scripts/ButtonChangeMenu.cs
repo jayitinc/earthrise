@@ -9,4 +9,14 @@ public class ButtonChangeMenu : MonoBehaviour
     {
         GameObject.Find("Menus").GetComponent<MenuManager>().currentMenu = menuToChangeTo;
     }
+
+    private void OnMouseEnter()
+    {
+        guiText.color = Color.red;
+    }
+
+    private void OnMouseExit()
+    {
+        guiText.color = Color.white;
+    }
 }

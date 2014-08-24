@@ -25,6 +25,9 @@ public class GalaxyPlanet : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 Game.planet = planetName;
+                PlayerPrefs.SetString("planet", planetName);
+                PlayerPrefs.SetString("screen", "Planet");
+                PlayerPrefs.Save();
                 Application.LoadLevel("Planet");
             }
         }

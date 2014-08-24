@@ -9,4 +9,14 @@ public class ButtonChangeScene : MonoBehaviour
     {
         Application.LoadLevel(sceneToChangeTo);
     }
+
+    private void OnMouseEnter()
+    {
+        guiText.color = Color.red;
+    }
+
+    private void OnMouseExit()
+    {
+        guiText.color = Color.white;
+    }
 }
