@@ -7,6 +7,7 @@ public class ButtonChangeMenu : MonoBehaviour
 
     private void OnMouseDown()
     {
+        guiText.color = Color.white;
         GameObject.Find("Menus").GetComponent<MenuManager>().currentMenu = menuToChangeTo;
     }
 

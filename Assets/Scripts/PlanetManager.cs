@@ -25,7 +25,7 @@ public class PlanetManager : MonoBehaviour
 
         int scrollHeight = 850;
 
-        if (Game.GetPlanetHabitability(Game.planet) && !Game.IsPlanetColonized(Game.planet))
+        if ((Game.GetPlanetHabitability(Game.planet) && !Game.IsPlanetColonized(Game.planet)) || Game.IsPlanetColonized(Game.planet))
         {
             scrollHeight += 50;
         }
@@ -54,11 +54,11 @@ public class PlanetManager : MonoBehaviour
         }
         else if (Game.GetPlanetAlienStatus(Game.planet) && !colonized)
         {
-            colonizedText = "Not Colonized (Aliens Detected)";
+            colonizedText = "Not Colonized (Aliens)";
         }
         else if (Game.GetPlanetAlienStatus(Game.planet) && colonized)
         {
-            colonizedText = "Colonized (Aliens Detected)";
+            colonizedText = "Colonized (Aliens)";
         }
         else if (colonized)
         {
@@ -90,6 +90,7 @@ public class PlanetManager : MonoBehaviour
         DrawLabel(9, "Fossil Fuel");
         DrawBar(10, "Purple", Game.GetPlanetFossilFuelRating(Game.planet));
         DrawLabel(11, "Food");
+        Debug.Log("The food rating for " + Game.planet + " is " + Game.GetPlanetFoodRating(Game.planet));
         DrawBar(12, "Red", Game.GetPlanetFoodRating(Game.planet));
         
         GUI.Label(PositionGUIElement(14), Game.GetPlanetDescription(Game.planet), descriptionStyle);
@@ -111,11 +112,22 @@ public class PlanetManager : MonoBehaviour
 
                 if (success)
                 {
-                    Game.colonizedPlanets.Add(new ColonizedPlanet(Game.planet, 1, 0, 0, 0, 0, 0));
+                    Game.colonizedPlanets.Add(new ColonizedPlanet(Game.planet, 1, 0, 0, 0, 0, 0, 0));
                     PlayerPrefs.SetString("colonizedPlanets", Game.GetColonizedPlanetsText());
                     PlayerPrefs.Save();
+
+                    Game.CreateNotification("Success", "You have successful colonized " + Game.planet + "!", Resources.Load<AudioClip>("Sounds/Ding"));
+                }
+                else
+                {
+                    Game.CreateNotification("Failure", "The aliens of " + Game.planet + " will not let you colonize their world!", Resources.Load<AudioClip>("Sounds/Ding"));
                 }
             }
+        }
+
+        if (Game.IsPlanetColonized(Game.planet))
+        {
+            DrawLabel(16, "Population: " + string.Format("{0:n0}", Game.GetPlanetPopulation(Game.planet)) + ",000", descriptionStyle);
         }
 
         int gmIndex = (scrollHeight / 50) - 1;
@@ -133,6 +145,11 @@ public class PlanetManager : MonoBehaviour
     private void DrawLabel(int index, string text)
     {
         GUI.Label(PositionGUIElement(index), text);
+    }
+
+    private void DrawLabel(int index, string text, GUIStyle style)
+    {
+        GUI.Label(PositionGUIElement(index), text, style);
     }
 
     private void DrawBar(int index, string color, int value)
